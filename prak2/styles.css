@@ -1,0 +1,318 @@
+/* Reset dasar untuk padding dan margin */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Chakra Petch', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    background: url('https://www.transparenttextures.com/patterns/tex2res4.png'); /* Tekstur kulit */
+    line-height: 1.6;
+}
+
+/* Styling Header */
+.profile-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4b3832; /* Warna seperti kulit coklat tua */
+    padding: 20px;
+    border: 5px solid #382d27; /* Efek seperti tepian kulit */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    margin: 20px;
+    background: url('https://www.transparenttextures.com/patterns/leather.png'); /* Tekstur kulit */
+    flex-wrap: wrap;
+    overflow: hidden; /* Pastikan semua konten tetap berada dalam box */
+}
+
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    background-color: #4b3832;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.avatar {
+    font-size: 40px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.profile-info {
+    text-align: center;
+    margin-left: 20px;
+    flex-grow: 1;
+    max-width: 100%; /* Pastikan teks tidak keluar dari box */
+}
+
+.profile-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #6f4e37;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.profile-info p {
+    font-size: 1.2rem;
+    color: #6f4e37;
+    font-style: italic;
+    overflow-wrap: break-word; /* Membungkus teks jika terlalu panjang */
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Styling Navbar */
+.navbar {
+    background-color: #382d27;
+    padding: 12px 0;
+    text-align: center;
+    margin-bottom: 20px; /* Jarak antara navbar dan konten berikutnya */
+    border-bottom: 1px solid #6f4e37; /* Garis tipis antar item navbar */
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Memastikan item navbar simetris */
+}
+
+.navbar li {
+    display: inline-block;
+    position: relative;
+    padding: 0 100px; /* Jarak antar item navbar */
+}
+
+.navbar li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 1px;
+    background-color: #6f4e37; /* Garis tipis antar item navbar */
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    color: #e2a57f; /* Warna jahitan terang */
+}
+
+/* Konten Utama */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.about-me, .github, .skills {
+    background-color: #ffffff;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 2px dashed #6f4e37; /* Efek jahitan kulit */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word; /* Menghindari teks keluar dari kotak */
+    overflow-wrap: break-word;
+}
+
+.about-me:hover, .github:hover, .skills:hover {
+    box-shadow: 0 0 25px 10px rgba(104, 69, 50, 0.5);
+}
+
+/* Efek jahitan */
+.github-link {
+    font-weight: bold;
+    color: #9b9800;
+    text-decoration: none;
+}
+
+.github-link:hover {
+    color: #b82e00;
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #382d27;
+}
+
+p {
+    font-size: 1rem;
+    color: #6f4e37;
+    word-wrap: break-word; /* Menghindari teks keluar dari kotak */
+    overflow-wrap: break-word;
+}
+
+/* Style untuk disclaimer */
+.disclaimer-text {
+    font-size: 0.8rem; /* Ubah ukuran teks */
+    color: #963232; /* Ubah warna teks */
+    font-style: italic; /* Ubah gaya teks menjadi miring */
+    font-weight: bold; 
+    text-align: center; /* Teks di tengah */
+    margin-top: 20px; /* Beri jarak atas */
+    line-height: 1.5; /* Tinggi baris */
+    letter-spacing: 0.5px; /* Jarak antar huruf */
+}
+
+
+/* Footer */
+footer {
+    background-color: #382d27;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 1rem;
+    border-top: 5px dashed #6f4e37; /* Efek jahitan */
+}
+
+/* Media Queries for Responsiveness */
+/* Media Queries for Responsiveness */
+
+/* Layar lebih kecil dari 900px */
+@media (max-width: 900px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .avatar-container {
+        width: 60px;
+        height: 60px;
+    }
+
+    .avatar {
+        font-size: 30px;
+    }
+
+    .profile-info h1 {
+        font-size: 2rem;
+    }
+
+    .profile-info p {
+        font-size: 1rem;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: stretch; /* Buat item navbar memenuhi lebar penuh */
+    }
+
+    .navbar li {
+        padding: 10px 0;
+        border-bottom: 1px solid #6f4e3741; /* Garis bawah antar item navbar */
+    }
+
+    .navbar li:last-child {
+        border-bottom: none; /* Hilangkan garis di item terakhir */
+    }
+
+    .navbar li:not(:last-child)::after {
+        display: none; /* Hilangkan garis vertikal di layar kecil */
+    }
+}
+
+/* Layar lebih kecil dari 600px */
+@media (max-width: 600px) {
+    .profile-header {
+        padding: 10px;
+    }
+
+    .avatar-container {
+        width: 50px;
+        height: 50px;
+    }
+
+    .avatar {
+        font-size: 25px;
+    }
+
+    .profile-info h1 {
+        font-size: 1.8rem;
+    }
+
+    .profile-info p {
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Layar lebih kecil dari 480px */
+@media (max-width: 480px) {
+    .profile-header {
+        padding: 10px;
+    }
+
+    .avatar-container {
+        width: 40px;
+        height: 40px;
+    }
+
+    .avatar {
+        font-size: 20px;
+    }
+
+    .profile-info h1 {
+        font-size: 1.5rem;
+    }
+
+    .profile-info p {
+        font-size: 0.8rem;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: stretch; /* Buat item navbar memenuhi lebar penuh */
+    }
+
+    .navbar li {
+        padding: 5px 0;
+        border-bottom: 1px solid #6f4e3741; /* Garis bawah antar item navbar */
+    }
+
+    .navbar li:last-child {
+        border-bottom: none; /* Hilangkan garis di item terakhir */
+    }
+
+    .navbar a {
+        font-size: 1rem;
+    }
+
+    .navbar li:not(:last-child)::after {
+        display: none; /* Hilangkan garis vertikal di layar kecil */
+    }
+}
