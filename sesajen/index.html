@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salman & Jinan | Two Years of Love</title>
+    
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Root Variables */
+        :root {
+            --color-pink-50: #FFF1F2;
+            --color-pink-100: #FFE4E6;
+            --color-pink-200: #FECDD3;
+            --color-pink-300: #FDA4AF;
+            --color-pink-400: #FB7185;
+            --color-pink-500: #F43F5E;
+            --color-pink-600: #E11D48;
+            --color-pink-700: #BE123C;
+            --color-pink-800: #9F1239;
+            --color-pink-900: #881337;
+            
+            --color-primary: var(--color-pink-500);
+            --color-secondary: var(--color-pink-300);
+            --color-accent: var(--color-pink-700);
+            --color-background: var(--color-pink-50);
+            --color-text: #333333;
+
+            --font-cursive: 'Great Vibes', cursive;
+            --font-dancing: 'Dancing Script', cursive;
+            --font-sans: 'Poppins', sans-serif;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-pink-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-primary);
+            border-radius: 6px;
+            border: 3px solid var(--color-pink-100);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-accent);
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(45deg, 
+                var(--color-pink-100),
+                var(--color-pink-50),
+                var(--color-pink-100)
+            );
+            background-size: 200% 200%;
+            animation: gradient 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .loader-heart {
+            width: 100px;
+            height: 90px;
+            position: relative;
+            margin: 0 auto 20px;
+            animation: heartBeat 1.2s infinite;
+        }
+
+        .loader-heart:before,
+        .loader-heart:after {
+            content: '';
+            position: absolute;
+            background: var(--color-primary);
+            width: 50px;
+            height: 80px;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .loader-heart:before {
+            left: 50px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .loader-heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(0.8); }
+            14% { transform: scale(1); }
+            28% { transform: scale(0.8); }
+            42% { transform: scale(1); }
+            70% { transform: scale(0.8); }
+            100% { transform: scale(0.8); }
+        }
+
+        .loading-text {
+            font-family: var(--font-dancing);
+            color: var(--color-primary);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: var(--color-pink-200);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            width: 0;
+            height: 100%;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 300px;
+            backdrop-filter: blur(10px);
+            transform: translateX(350px);
+            transition: transform 0.3s ease;
+        }
+
+        .music-player.visible {
+            transform: translateX(0);
+        }
+
+        .music-info {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .music-title {
+            font-weight: 500;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .music-artist {
+            font-size: 0.9rem;
+            color: var(--color-text);
+            opacity: 0.7;
+        }
+
+        .music-waves {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            height: 30px;
+            margin: 10px 0;
+        }
+
+        .wave {
+            width: 3px;
+            height: 100%;
+            background: var(--color-primary);
+            animation: wave 1s ease-in-out infinite;
+            transform-origin: bottom;
+            opacity: 0;
+        }
+
+        .wave.playing {
+            opacity: 1;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: scaleY(0.3); }
+            50% { transform: scaleY(1); }
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .music-btn {
+            background: none;
+            border: none;
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 5px;
+        }
+
+        .music-btn:hover {
+            color: var(--color-accent);
+            transform: scale(1.1);
+        }
+
+        .progress-container {
+            background: var(--color-pink-100);
+            height: 4px;
+            border-radius: 2px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .progress {
+            background: var(--color-primary);
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.1s linear;
+            width: 0%;
+        }
+
+        .time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--color-text);
+            margin-top: 5px;
+        }
+
+        /* Volume Control */
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .volume-btn {
+            background: none;
+            border: none;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .volume-slider {
+            flex: 1;
+            height: 4px;
+            background: var(--color-pink-100);
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .volume-progress {
+            width: 100%;
+            height: 100%;
+            background: var(--color-primary);
+            border-radius: 2px;
+        }
+
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .main-nav.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-brand {
+            font-family: var(--font-cursive);
+            font-size: 2rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-brand:hover {
+            color: var(--color-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+        }
+
+        .nav-link {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--color-primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+                        url('https://source.unsplash.com/random/1920x1080?romantic');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: var(--font-cursive);
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-dancing);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            opacity: 0;
+            animation: floatHeart 8s linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Love Counter */
+        .love-counter {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+            backdrop-filter: blur(10px);
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .counter-item {
+            text-align: center;
+        }
+
+        .counter-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .counter-label {
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+            color: white;
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Story Timeline Section */
+        .story-section {
+            padding: 100px 0;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-title {
+            font-family: var(--font-cursive);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            color: var(--color-primary);
+            margin-bottom: 50px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(var(--color-pink-300), var(--color-pink-500));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            margin-bottom: 100px;
+            position: relative;
+            width: 50%;
+            padding: 0 40px;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            transform: translateX(-100px);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            transform: translateX(100px);
+        }
+
+        .timeline-content {
+            position: relative;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-10px);
+        }
+
+        .timeline-date {
+            font-family: var(--font-dancing);
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .timeline-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -52.5px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -52.5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .counter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline::before {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-dot {
+                left: 18px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio Element -->
+    <audio id="audioPlayer">
+        <source src="" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="loader-heart"></div>
+            <div class="loading-text">Loading our love story...</div>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-info">
+            <div class="music-title" id="songTitle">Select a song</div>
+            <div class="music-artist" id="songArtist"></div>
+        </div>
+        
+        <div class="music-waves">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+
+        <div class="music-controls">
+            <button class="music-btn" id="prevTrack">
+                <i class="fas fa-backward"></i>
+            </button>
+            <button class="music-btn" id="playPause">
+                <i class="fas fa-play"></i>
+            </button>
+            <button class="music-btn" id="nextTrack">
+                <i class="fas fa-forward"></i>
+            </button>
+        </div>
+
+        <div class="progress-container" id="progressContainer">
+            <div class="progress" id="progress"></div>
+        </div>
+        
+        <div class="time">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
+
+        <div class="volume-container">
+            <button class="volume-btn" id="volumeBtn">
+                <i class="fas fa-volume-up"></i>
+            </button>
+            <div class="volume-slider" id="volumeSlider">
+                <div class="volume-progress" id="volumeProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="#" class="nav-brand">S & J</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#story" class="nav-link">Our Story</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#moments" class="nav-link">Moments</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-hearts"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Salman & Jinan</h1>
+            <h2 class="hero-subtitle">Two Years of Love Journey</h2>
+            
+            <div class="love-counter">
+                <div class="counter-grid">
+                    <div class="counter-item">
+                        <div class="counter-value" id="yearCount">2</div>
+                        <div class="counter-label">Years</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-value" id="monthCount">0</div>
+                        <div class="counter-label">Months</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-value" id="dayCount">0</div>
+                        <div class="counter-label">Days</div>
+                    </div>
+                    <div class="counter-item">
+                        <div class="counter-value" id="hourCount">0</div>
+                        <div class="counter-label">Hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Story Timeline Section -->
+    <section id="story" class="story-section">
+        <div class="bg-hearts"></div>
+        <h2 class="story-title">Our Journey Together</h2>
+        <div class="timeline">
+            <!-- Timeline items will be added by JavaScript -->
+        </div>
+    </section>
+
+    <script>
+        // Playlist Configuration
+        const playlist = [
+            {
+                title: "The Show",
+                artist: "Lenka",
+                url: "theshow.mp3"
+            },
+            {
+                title: "Sweet Time",
+                artist: "Lenka",
+                url: "sweettime.mp3"
+            }
+            // Tambahkan lagu lainnya sesuai kebutuhan
+        ];
+
+        // Music Player Elements
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPause');
+        const prevBtn = document.getElementById('prevTrack');
+        const nextBtn = document.getElementById('nextTrack');
+        const progressContainer = document.getElementById('progressContainer');
+        const progress = document.getElementById('progress');
+        const songTitle = document.getElementById('songTitle');
+        const songArtist = document.getElementById('songArtist');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const volumeBtn = document.getElementById('volumeBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeProgress = document.getElementById('volumeProgress');
+        const musicPlayer = document.querySelector('.music-player');
+        const waves = document.querySelectorAll('.wave');
+
+        let currentTrackIndex = 0;
+        let isPlaying = false;
+
+        // Show music player after delay
+        setTimeout(() => {
+            musicPlayer.classList.add('visible');
+        }, 2000);
+
+        // Format time in minutes and seconds
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Load and setup track
+        function loadTrack(index) {
+            const track = playlist[index];
+            audioPlayer.src = track.url;
+            songTitle.textContent = track.title;
+            songArtist.textContent = track.artist;
+            
+            if (isPlaying) {
+                audioPlayer.play();
+                updateWaves(true);
+            }
+        }
+
+        // Play/Pause functionality
+        playPauseBtn.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                isPlaying = true;
+                updateWaves(true);
+            } else {
+                audioPlayer.pause();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                isPlaying = false;
+                updateWaves(false);
+            }
+        });
+
+        // Update wave animation
+        function updateWaves(playing) {
+            waves.forEach(wave => {
+                wave.classList.toggle('playing', playing);
+            });
+        }
+
+        // Previous and Next track
+        prevBtn.addEventListener('click', () => {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            loadTrack(currentTrackIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            loadTrack(currentTrackIndex);
+        });
+
+        // Update progress bar
+        audioPlayer.addEventListener('timeupdate', () => {
+            const currentTime = audioPlayer.currentTime;
+            const duration = audioPlayer.duration;
+            const progressPercent = (currentTime / duration) * 100;
+            
+            progress.style.width = `${progressPercent}%`;
+            currentTimeEl.textContent = formatTime(currentTime);
+            
+            if (!isNaN(duration)) {
+                durationEl.textContent = formatTime(duration);
+            }
+        });
+
+        // Click on progress bar
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audioPlayer.duration;
+            audioPlayer.currentTime = (clickX / width) * duration;
+        });
+
+        // Volume control
+        volumeBtn.addEventListener('click', () => {
+            if (audioPlayer.volume > 0) {
+                audioPlayer.volume = 0;
+                volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                volumeProgress.style.width = '0%';
+            } else {
+                audioPlayer.volume = 1;
+                volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                volumeProgress.style.width = '100%';
+            }
+        });
+
+        volumeSlider.addEventListener('click', (e) => {
+            const width = volumeSlider.clientWidth;
+            const clickX = e.offsetX;
+            const volume = clickX / width;
+            audioPlayer.volume = volume;
+            volumeProgress.style.width = `${volume * 100}%`;
+            
+            if (volume === 0) {
+                volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            } else if (volume < 0.5) {
+                volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+            } else {
+                volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            }
+        });
+
+        // Timeline Data
+        const timelineData = [
+            {
+                date: "August 31, 2022",
+                title: "Our First Meeting",
+                text: "The day our hearts connected and our journey began. A moment that changed our lives forever.",
+                image: "firstmeet.jpeg"
+            },
+            {
+                date: "October 22, 2022",
+                title: "First Official Date",
+                text: "An unforgettable evening filled with laughter, deep conversations, and the beginning of something beautiful.",
+                image: "ofcdate.jpeg"
+            },
+            {
+                date: "October 9, 2022",
+                title: "First go home together",
+                text: "Sharing the magic of the holiday season and creating precious memories together.",
+                image: "gohome.jpeg"
+            },
+            {
+                date: "October 22, 2023",
+                title: "Our First Anniversary",
+                text: "Celebrating one year of love, growth, and countless beautiful moments shared together.",
+                image: "anniv.jpeg"
+            }
+        ];
+
+        // Populate Timeline
+        const timeline = document.querySelector('.timeline');
+        timelineData.forEach(item => {
+            const timelineItem = document.createElement('div');
+            timelineItem.classList.add('timeline-item');
+            
+            timelineItem.innerHTML = `
+                <div class="timeline-content">
+                    <img src="${item.image}" alt="${item.title}" class="timeline-image">
+                    <div class="timeline-date">${item.date}</div>
+                    <h3 class="timeline-title">${item.title}</h3>
+                    <p class="timeline-text">${item.text}</p>
+                </div>
+                <div class="timeline-dot"></div>
+            `;
+            
+            timeline.appendChild(timelineItem);
+        });
+
+        // Timeline Animation
+        const observeTimeline = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observeTimeline.observe(item);
+        });
+
+        // Preloader
+        document.addEventListener('DOMContentLoaded', () => {
+            const preloader = document.getElementById('preloader');
+            const progress = document.getElementById('loadingProgress');
+            let width = 0;
+
+            const interval = setInterval(() => {
+                width += 2;
+                progress.style.width = width + '%';
+
+                if (width >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        preloader.style.opacity = '0';
+                        setTimeout(() => {
+                            preloader.style.display = 'none';
+                        }, 500);
+                    }, 500);
+                }
+            }, 50);
+        });
+
+        // Update Counter
+        function updateCounter() {
+            const startDate = new Date('2022-10-22').getTime();
+            const now = new Date().getTime();
+            const diff = now - startDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            document.getElementById('yearCount').textContent = years;
+            document.getElementById('monthCount').textContent = months;
+            document.getElementById('dayCount').textContent = days;
+            document.getElementById('hourCount').textContent = hours;
+        }
+
+        updateCounter();
+        setInterval(updateCounter, 1000 * 60 * 60); // Update every hour
+
+        // Floating Hearts Animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            
+            document.querySelector('.floating-hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Initial load
+        loadTrack(currentTrackIndex);
+    </script>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <style>
+            .gallery-section {
+                padding: 100px 0;
+                background: var(--color-pink-50);
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 20px;
+                padding: 0 20px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .gallery-item {
+                position: relative;
+                border-radius: 15px;
+                overflow: hidden;
+                aspect-ratio: 1;
+                cursor: pointer;
+                opacity: 0;
+                transform: scale(0.9);
+                transition: all 0.5s ease;
+            }
+
+            .gallery-item.visible {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .gallery-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .gallery-overlay {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                padding: 20px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .gallery-item:hover .gallery-overlay {
+                opacity: 1;
+            }
+
+            .gallery-item:hover .gallery-image {
+                transform: scale(1.1);
+            }
+
+            .gallery-caption {
+                color: white;
+                text-align: center;
+                transform: translateY(20px);
+                transition: transform 0.3s ease;
+            }
+
+            .gallery-item:hover .gallery-caption {
+                transform: translateY(0);
+            }
+
+            .gallery-title {
+                font-family: var(--font-dancing);
+                font-size: 1.5rem;
+                margin-bottom: 5px;
+            }
+
+            .gallery-date {
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
+
+            /* Modal */
+            .gallery-modal {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.9);
+                z-index: 1100;
+                padding: 20px;
+            }
+
+            .gallery-modal.active {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .modal-content {
+                position: relative;
+                max-width: 90%;
+                max-height: 90vh;
+            }
+
+            .modal-image {
+                max-width: 100%;
+                max-height: 80vh;
+                object-fit: contain;
+                border-radius: 10px;
+            }
+
+            .modal-caption {
+                color: white;
+                text-align: center;
+                margin-top: 15px;
+                font-family: var(--font-dancing);
+                font-size: 1.5rem;
+            }
+
+            .modal-close {
+                position: absolute;
+                top: -40px;
+                right: 0;
+                color: white;
+                font-size: 2rem;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+            }
+
+            .modal-close:hover {
+                transform: rotate(90deg);
+            }
+
+            .modal-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                color: white;
+                font-size: 3rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                padding: 20px;
+            }
+
+            .modal-prev {
+                left: 20px;
+            }
+
+            .modal-next {
+                right: 20px;
+            }
+
+            .modal-nav:hover {
+                color: var(--color-primary);
+                transform: translateY(-50%) scale(1.2);
+            }
+        </style>
+
+        <h2 class="story-title">Our Precious Moments</h2>
+        <div class="gallery-grid">
+            <!-- Gallery items will be added by JavaScript -->
+        </div>
+
+        <!-- Gallery Modal -->
+        <div class="gallery-modal" id="galleryModal">
+            <div class="modal-content">
+                <img src="" alt="" class="modal-image">
+                <div class="modal-caption"></div>
+                <div class="modal-close">&times;</div>
+                <div class="modal-nav modal-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="modal-nav modal-next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memories Section -->
+    <section id="memories" class="memories-section">
+        <style>
+            .memories-section {
+                padding: 100px 0;
+                background: white;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .memories-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .memory-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+                margin-top: 50px;
+            }
+
+            .memory-card {
+                background: white;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            .memory-card.visible {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .memory-card:hover {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .memory-image {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .memory-content {
+                padding: 20px;
+            }
+
+            .memory-title {
+                font-family: var(--font-dancing);
+                font-size: 1.8rem;
+                color: var(--color-primary);
+                margin-bottom: 10px;
+            }
+
+            .memory-date {
+                font-size: 0.9rem;
+                color: var(--color-text);
+                opacity: 0.7;
+                margin-bottom: 15px;
+            }
+
+            .memory-text {
+                font-size: 1rem;
+                color: var(--color-text);
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+
+            .memory-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .memory-tag {
+                padding: 5px 15px;
+                background: var(--color-pink-100);
+                color: var(--color-primary);
+                border-radius: 20px;
+                font-size: 0.9rem;
+            }
+
+            /* Quote Section */
+            .quote-section {
+                text-align: center;
+                padding: 50px 0;
+                background: var(--color-pink-50);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .quote-text {
+                font-family: var(--font-dancing);
+                font-size: clamp(1.5rem, 3vw, 2.5rem);
+                color: var(--color-primary);
+                max-width: 800px;
+                margin: 0 auto;
+                line-height: 1.6;
+                position: relative;
+                padding: 40px;
+            }
+
+            .quote-text::before,
+            .quote-text::after {
+                content: '"';
+                font-family: var(--font-cursive);
+                font-size: 4rem;
+                color: var(--color-pink-300);
+                position: absolute;
+                opacity: 0.5;
+            }
+
+            .quote-text::before {
+                top: 0;
+                left: 0;
+            }
+
+            .quote-text::after {
+                bottom: -20px;
+                right: 0;
+                transform: rotate(180deg);
+            }
+
+            /* Footer */
+            .footer {
+                background: var(--color-pink-900);
+                color: white;
+                padding: 50px 0 20px;
+                text-align: center;
+            }
+
+            .footer-content {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .footer-title {
+                font-family: var(--font-cursive);
+                font-size: 2rem;
+                color: var(--color-pink-300);
+                margin-bottom: 20px;
+            }
+
+            .footer-text {
+                font-size: 1rem;
+                margin-bottom: 30px;
+                opacity: 0.8;
+            }
+
+            .heart-icon {
+                color: var(--color-primary);
+                animation: heartBeat 1.2s infinite;
+                display: inline-block;
+            }
+
+            .copyright {
+                font-size: 0.9rem;
+                opacity: 0.6;
+                margin-top: 30px;
+            }
+        </style>
+
+        <div class="memories-container">
+            <h2 class="story-title">Special Moments</h2>
+            <div class="memory-cards">
+                <!-- Memory cards will be added by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Quote Section -->
+        <div class="quote-section">
+            <p class="quote-text">
+                "Every moment spent with you feels like a beautiful dream I never want to wake up from"
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h2 class="footer-title">Salman & Jinan</h2>
+            <p class="footer-text">
+                Thank you for being part of our journey <span class="heart-icon">❤️</span>
+            </p>
+            <p class="copyright">
+                &copy; 2024 | Made with love for our anniversary
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery Data
+        const galleryData = [
+            {
+                image: "mirror.jpeg",
+                title: "First Mirror Selfie",
+                date: "20 September 2022"
+            },
+            {
+                image: "beach.jpeg",
+                title: "Beach Date",
+                date: "Every Week"
+            },
+            {
+                image: "bioskop.jpeg",
+                title: "Movie Night",
+                date: "Every week"
+            },
+            {
+                image: "cafe.jpeg",
+                title: "Cafe Date",
+                date: "always"
+            },
+            {
+                image: "streetfood.jpeg",
+                title: "Street Food",
+                date: "Every Night"
+            },
+            {
+                image: "nr.jpeg",
+                title: "Night Ride",
+                date: "18 October 2022"
+            }
+        ];
+
+        // Populate Gallery
+        const galleryGrid = document.querySelector('.gallery-grid');
+        galleryData.forEach((item, index) => {
+            const galleryItem = document.createElement('div');
+            galleryItem.classList.add('gallery-item');
+            
+            galleryItem.innerHTML = `
+                <img src="${item.image}" alt="${item.title}" class="gallery-image">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <div class="gallery-title">${item.title}</div>
+                        <div class="gallery-date">${item.date}</div>
+                    </div>
+                </div>
+            `;
+            
+            galleryGrid.appendChild(galleryItem);
+            galleryItem.addEventListener('click', () => openModal(index));
+        });
+
+        // Memories Data
+        const memoriesData = [
+            {
+                image: "firstbioskop.jpeg",
+                title: "First Cinema Date",
+                date: "6 october 2022",
+                text: "Watching our first movie together at the cinema. The movie was great, but your company was even better.",
+                tags: ["Movie", "Date Night", "Memory"]
+            },
+            {
+                image: "sunset.jpeg",
+                title: "Beach Sunset",
+                date: "December 2022",
+                text: "Walking along the beach, watching the sunset together. A perfect moment of peace and love.",
+                tags: ["Beach", "Sunset", "Romantic"]
+            },
+            {
+                image: "surprise.jpeg",
+                title: "Birthday Surprise",
+                date: "March 2023",
+                text: "Your surprise birthday celebration was absolutely perfect. The joy in your eyes made everything worth it.",
+                tags: ["Birthday", "Celebration", "Surprise"]
+            }
+        ];
+
+        // Populate Memory Cards
+        const memoryCards = document.querySelector('.memory-cards');
+        memoriesData.forEach(memory => {
+            const card = document.createElement('div');
+            card.classList.add('memory-card');
+            
+            card.innerHTML = `
+                <img src="${memory.image}" alt="${memory.title}" class="memory-image">
+                <div class="memory-content">
+                    <h3 class="memory-title">${memory.title}</h3>
+                    <div class="memory-date">${memory.date}</div>
+                    <p class="memory-text">${memory.text}</p>
+                    <div class="memory-tags">
+                        ${memory.tags.map(tag => `<span class="memory-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            
+            memoryCards.appendChild(card);
+        });
+
+        // Gallery Modal Functions
+        const modal = document.getElementById('galleryModal');
+        const modalImage = modal.querySelector('.modal-image');
+        const modalCaption = modal.querySelector('.modal-caption');
+        let currentImageIndex = 0;
+
+        function openModal(index) {
+            currentImageIndex = index;
+            updateModalContent();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateModalContent() {
+            const item = galleryData[currentImageIndex];
+            modalImage.src = item.image;
+            modalImage.alt = item.title;
+            modalCaption.textContent = `${item.title} - ${item.date}`;
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryData.length;
+            updateModalContent();
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryData.length) % galleryData.length;
+            updateModalContent();
+        }
+
+        // Modal Event Listeners
+        modal.querySelector('.modal-close').addEventListener('click', closeModal);
+        modal.querySelector('.modal-next').addEventListener('click', nextImage);
+        modal.querySelector('.modal-prev').addEventListener('click', prevImage);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Intersection Observer for animations
+        const observeElements = (elements, callback) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        callback(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            elements.forEach(element => observer.observe(element));
+        };
+
+        // Gallery Animation
+        observeElements(document.querySelectorAll('.gallery-item'), (element) => {
+            element.classList.add('visible');
+        });
+
+        // Memory Cards Animation
+        observeElements(document.querySelectorAll('.memory-card'), (element) => {
+            element.classList.add('visible');
+        });
+
+        // Keyboard Navigation for Gallery Modal
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            
+            switch(e.key) {
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 'ArrowLeft':
+                    prevImage();
+                    break;
+                case 'ArrowRight':
+                    nextImage();
+                    break;
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Parallax Effect for Hero Section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const heroContent = document.querySelector('.hero-content');
+            
+            hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+            heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+        });
+
+
+
+        // Interactive Click Hearts
+        document.addEventListener('click', (e) => {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            heart.style.fontSize = '20px';
+            heart.style.pointerEvents = 'none';
+            heart.style.animation = 'clickHeart 1s forwards';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 1000);
+        });
+
+        // Add this CSS for click heart animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes clickHeart {
+                0% {
+                    transform: scale(0) translateY(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1.5) translateY(-50px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Navigation Scroll Effect
+        let lastScroll = 0;
+        const nav = document.querySelector('.main-nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                nav.classList.remove('scrolled');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+                nav.classList.add('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Music Playlist Auto Advance
+        audioPlayer.addEventListener('ended', () => {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            loadTrack(currentTrackIndex);
+            audioPlayer.play();
+        });
+
+        // Volume Persistence
+        const savedVolume = localStorage.getItem('audioVolume');
+        if (savedVolume !== null) {
+            audioPlayer.volume = parseFloat(savedVolume);
+            updateVolumeUI(audioPlayer.volume);
+        }
+
+        function updateVolumeUI(volume) {
+            volumeProgress.style.width = `${volume * 100}%`;
+            if (volume === 0) {
+                volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            } else if (volume < 0.5) {
+                volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+            } else {
+                volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            }
+        }
+
+        // Page Visibility API for Music
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                audioPlayer.pause();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+
+        // Loading Performance
+        window.addEventListener('load', () => {
+            // Preload images
+            const imagesToPreload = [
+                ...galleryData.map(item => item.image),
+                ...memoriesData.map(item => item.image),
+                ...timelineData.map(item => item.image)
+            ];
+
+            imagesToPreload.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        });
+
+        // Initialize
+        updateCounter();
+        loadTrack(currentTrackIndex);
+    </script>
+</body>
+</html>
