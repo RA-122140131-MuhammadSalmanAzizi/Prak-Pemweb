@@ -196,11 +196,11 @@ input[type="number"]:focus {
 }
 
 /* Warna status lulus/gagal */
-.detail-value.passed {
+.detail-value.lulus {
     color: var(--success);
 }
 
-.detail-value.failed {
+.detail-value.tidak.lulus {
     color: var(--danger);
 }
 
