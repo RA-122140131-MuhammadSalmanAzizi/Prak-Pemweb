@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Grade Calculator</title>
+    <!-- Import CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Import local files -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <i class="fas fa-graduation-cap"></i>
+                Grade Calculator
+            </h1>
+            <p>Made by &copy; 2024 salman.corp</p>
+        </div>
+
+        <div id="error" class="error-message"></div>
+
+        <div class="input-group">
+            <label class="input-label">
+                <i class="fas fa-tasks"></i>
+                Tugas (30%)
+            </label>
+            <div class="input-container">
+                <input type="number" id="tugas" min="0" max="100" placeholder="Enter assignment score">
+                <input type="range" class="slider" min="0" max="100" value="0" 
+                       oninput="updateInput('tugas', this.value)">
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">
+                <i class="fas fa-clock"></i>
+                UTS (30%)
+            </label>
+            <div class="input-container">
+                <input type="number" id="uts" min="0" max="100" placeholder="Enter midterm score">
+                <input type="range" class="slider" min="0" max="100" value="0" 
+                       oninput="updateInput('uts', this.value)">
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">
+                <i class="fas fa-graduation-cap"></i>
+                UAS (40%)
+            </label>
+            <div class="input-container">
+                <input type="number" id="uas" min="0" max="100" placeholder="Enter final exam score">
+                <input type="range" class="slider" min="0" max="100" value="0" 
+                       oninput="updateInput('uas', this.value)">
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="btn btn-primary" onclick="calculateGrade()">
+                <i class="fas fa-calculator"></i> Calculate
+            </button>
+            <button class="btn btn-secondary" onclick="resetForm()">
+                <i class="fas fa-redo"></i> Reset
+            </button>
+        </div>
+
+        <div class="results" id="results">
+            <div class="grade-card">
+                <div class="grade-header">
+                    <div class="grade-title">Final Grade</div>
+                    <div id="grade-circle" class="grade-circle"></div>
+                </div>
+                <div id="grade-details"></div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-card">
+                    <canvas id="contributionChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
