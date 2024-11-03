@@ -134,9 +134,19 @@ input[type="number"]:focus {
     border: 1px solid var(--primary);
 }
 
-.btn:hover {
-    transform: scale(1.05); /* Membesar 5% */
-    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3); /* Glow effect */
+/* Efek hover hanya untuk desktop */
+@media (min-width: 768px) {
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+    }
+}
+
+/* Efek tap sederhana untuk mobile */
+@media (max-width: 767px) {
+    .btn:active {
+        opacity: 0.8;
+    }
 }
 
 /* Styling area hasil */
