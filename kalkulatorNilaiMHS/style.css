@@ -134,19 +134,26 @@ input[type="number"]:focus {
     border: 1px solid var(--primary);
 }
 
-/* Efek hover hanya untuk desktop */
-@media (min-width: 768px) {
+/* Hover effect hanya untuk perangkat non-touch */
+@media (hover: hover) {
     .btn:hover {
         transform: scale(1.05);
         box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
     }
 }
 
-/* Efek tap sederhana untuk mobile */
-@media (max-width: 767px) {
-    .btn:active {
-        opacity: 0.8;
-    }
+/* Untuk perangkat touch, gunakan active state */
+.btn:active {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+    transition: all 0.1s ease;
+}
+
+/* Reset setelah active pada touch device */
+.btn:not(:active) {
+    transform: scale(1);
+    box-shadow: none;
+    transition: all 0.3s ease;
 }
 
 /* Styling area hasil */
